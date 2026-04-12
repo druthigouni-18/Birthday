@@ -2,60 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Memory Book</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Memory Magazine</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Turn.js -->
+  <script src="https://cdn.jsdelivr.net/gh/blasten/turn.js@master/turn.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #1b1b1b;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    /* FLIPBOOK SIZE (portrait) */
+    #flipbook {
+      width: 400px;
+      height: 600px;
+      max-width: 90vw;
+      max-height: 75vh;
+    }
+
+    #flipbook .page {
+      background: #000; /* removes white gap */
+    }
+
+    #flipbook img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* no crop */
+    }
+
+    .controls {
+      margin-top: 15px;
+      display: flex;
+      gap: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ffd86b, #ff9f43);
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      #flipbook {
+        width: 90vw;
+        height: 70vh;
+      }
+    }
+  </style>
 </head>
-<body class="center-page">
 
-  <div>
-    <h1 class="book-title">📖 Memory Magazine</h1>
+<body>
 
-    <div class="book-wrap">
-      <div class="book">
+<h1>📖 </h1>
 
-        <div class="left-static">
-          <h2>Moments To Cherish</h2>
-          <p>
-            Add your favorite memories, photos, and birthday messages here.
-            This page stays open like a real book.
-          </p>
-        </div>
+<div id="flipbook">
 
-        <div class="page-sheet" id="sheet1" style="z-index: 3;">
-          <div class="front">
-            <h2>Page 1</h2>
-            <p>Write your sweetest birthday message here 💖</p>
-          </div>
-          <div class="back">
-            <h2>Page 2</h2>
-            <p>Add one beautiful memory with a photo 📸</p>
-          </div>
-        </div>
+  <div class="page"><img src="1.jpg"></div>
+  <div class="page"><img src="2.jpg"></div>
+  <div class="page"><img src="3.jpg"></div>
+  <div class="page"><img src="4.jpg"></div>
+  <div class="page"><img src="5.jpg"></div>
+  <div class="page"><img src="6.jpg"></div>
+  <div class="page"><img src="7.jpg"></div>
+  <div class="page"><img src="8.jpg"></div>
+  <div class="page"><img src="9.jpg"></div>
+  <div class="page"><img src="10.jpg"></div>
 
-        <div class="page-sheet" id="sheet2" style="z-index: 2;">
-          <div class="front">
-            <h2>Page 3</h2>
-            <p>Add another special surprise message ✨</p>
-          </div>
-          <div class="back">
-            <h2>Page 4</h2>
-            <p>End with love, wishes, and one final photo ❤️</p>
-          </div>
-        </div>
+</div>
 
-      </div>
-    </div>
+<div class="controls">
+  <button onclick="prevPage()">⬅ Previous</button>
+  <button onclick="nextPage()">Next ➡</button>
+</div>
 
-    <div class="nav-btns">
-      <button onclick="flipPage('sheet1')">Turn Page 1</button>
-      <button onclick="flipPage('sheet2')">Turn Page 2</button>
-    </div>
-     
-    <br><br>
-    <button onclick="location.href='page2.html'">Back</button>
-  </div>
-  
-  <script src="script.js"></script>
+<br>
+<button onclick="location.href='page2.html'">Back</button>
+
+<script>
+  $(document).ready(function () {
+    $("#flipbook").turn({
+      width: 400,
+      height: 600,
+      autoCenter: true,
+      display: "single",   // portrait book
+      elevation: 50,
+      gradients: true
+    });
+  });
+
+  function nextPage() {
+    $("#flipbook").turn("next");
+  }
+
+  function prevPage() {
+    $("#flipbook").turn("previous");
+  }
+</script>
+
 </body>
 </html>

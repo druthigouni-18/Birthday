@@ -49,9 +49,3 @@ function blowCandles() {
 }
 
 // FLIP BOOK PAGES
-function flipPage(id) {
-  const page = document.getElementById(id);
-  if (page) {
-    page.classList.toggle("flipped");
-  }
-}
