@@ -3,7 +3,7 @@ function checkPassword() {
   const password = document.getElementById("password").value;
   const error = document.getElementById("error");
 
-  const realPassword = "happy123"; // Change this
+  const realPassword = "5533"; // Change this
 
   if (password === realPassword) {
     window.location.href = "page2.html";
